@@ -3,6 +3,7 @@ package com.fjcuervas.entity;
 import java.util.Date;
 
 import javax.persistence.Column;
+import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -10,6 +11,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.persistence.Transient;
 
 @Entity
 @Table(name = "PERSONA")
@@ -26,6 +28,13 @@ public class Persona {
 	@Column(name="FECHA_NAC")
 	@Temporal(TemporalType.DATE)
 	private Date fechaNacimiento;
+	
+	@Column(name = "NOMBRE_COMPLETO")
+	@Embedded
+	private NombreCompleto nombreCompleto;
+	
+	@Transient
+	private String transientInfo;
 	
 	public int getIdPersona() {
 		return idPersona;
@@ -52,9 +61,10 @@ public class Persona {
 		this.fechaNacimiento = fechaNacimiento;
 	}
 
-	public Persona(String dni, Date fechaNacimiento) {
+	public Persona(String dni, Date fechaNacimiento, NombreCompleto nombreCompleto) {
 		this.dni = dni;
 		this.fechaNacimiento = fechaNacimiento;
+		this.nombreCompleto = nombreCompleto;
 	}
 
 	public Persona() {
@@ -62,7 +72,7 @@ public class Persona {
 
 	@Override
 	public String toString() {
-		return "Persona [idPersona=" + idPersona + ", dni=" + dni + ", fechaNacimiento=" + fechaNacimiento + "]";
+		return "Persona [idPersona=" + idPersona + ", dni=" + dni + ", fechaNacimiento=" + fechaNacimiento
+				+ ", nombreCompleto=" + nombreCompleto + "]";
 	}
-
 }
