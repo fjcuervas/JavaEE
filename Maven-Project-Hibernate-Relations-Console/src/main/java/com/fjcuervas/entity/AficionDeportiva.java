@@ -25,12 +25,12 @@ public class AficionDeportiva {
 	private String mayorLogro;
 	
 	@ManyToOne
-	@MapsId(value = "idPersonaFK")
+	@MapsId(value = "idPersonaFK") //Indicamos que este campo ya está en la llave primaria (llave derivada) y que no lo repita
 	@JoinColumn(name = "AD_ID_PERSONA")
 	private Persona persona;
 	
 	@ManyToOne
-	@MapsId(value = "idDeporteFK")
+	@MapsId(value = "idDeporteFK") //Indicamos que este campo ya está en la llave primaria (llave derivada) y que no lo repita
 	@JoinColumn(name = "AD_ID_DEPORTE")
 	private Deporte deporte;
 	
